@@ -3,6 +3,7 @@ package lib;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.LinkedList;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class Employee {
@@ -10,12 +11,13 @@ public class Employee {
 	private String employeeId;
 	private String firstName;
 	private String lastName;
+	private String idNumber;
 	private String address;
-	
-	
+
 	private int yearJoined;
 	private int monthJoined;
 	private int dayJoined;
+	private LocalDate entryJoined;
 	private int monthWorkingInYear;
 	
 	private boolean isForeigner;
@@ -43,7 +45,7 @@ public class Employee {
 		this.monthJoined = monthJoined;
 		this.dayJoined = dayJoined;
 		this.isForeigner = isForeigner;
-	
+		this.entryJoined = LocalDate.parse(yearJoined+"-"+monthJoined+"-"+dayJoined, DateTimeFormatter.ofPattern("yyyy-mm-dd"));
 		
 		childNames = new LinkedList<String>();
 		childIdNumbers = new LinkedList<String>();
@@ -98,10 +100,15 @@ public class Employee {
 		
 		if (date.getYear() == yearJoined) {
 			monthWorkingInYear = date.getMonthValue() - monthJoined;
+			if (date.getYear() == entryJoined.getYear()) {
+				monthWorkingInYear = date.getMonthValue() - entryJoined.getMonthValue();
 		}else {
 			monthWorkingInYear = 12;
 		}
 		
 		return TaxFunction.calculateTax(monthlySalary, otherMonthlyIncome, monthWorkingInYear, annualDeductible, spouseIdNumber.equals(""), childIdNumbers.size());
 	}
+
+
+}
 }
