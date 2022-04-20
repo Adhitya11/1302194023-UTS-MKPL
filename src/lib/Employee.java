@@ -6,12 +6,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Employee {
-
+	//Biodata
 	private String employeeId;
 	private String firstName;
 	private String lastName;
-	private String idNumber;
 	private String address;
+	
 	
 	private int yearJoined;
 	private int monthJoined;
@@ -19,7 +19,9 @@ public class Employee {
 	private int monthWorkingInYear;
 	
 	private boolean isForeigner;
-	private boolean gender; //true = Laki-laki, false = Perempuan
+	private enum gender{
+		Pria,Perempuan
+	} 
 	
 	private int monthlySalary;
 	private int otherMonthlyIncome;
@@ -35,13 +37,13 @@ public class Employee {
 		this.employeeId = employeeId;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.idNumber = idNumber;
+		
 		this.address = address;
 		this.yearJoined = yearJoined;
 		this.monthJoined = monthJoined;
 		this.dayJoined = dayJoined;
 		this.isForeigner = isForeigner;
-		this.gender = gender;
+	
 		
 		childNames = new LinkedList<String>();
 		childIdNumbers = new LinkedList<String>();
@@ -81,7 +83,7 @@ public class Employee {
 	
 	public void setSpouse(String spouseName, String spouseIdNumber) {
 		this.spouseName = spouseName;
-		this.spouseIdNumber = idNumber;
+		
 	}
 	
 	public void addChild(String childName, String childIdNumber) {
